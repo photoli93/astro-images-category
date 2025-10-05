@@ -1,0 +1,40 @@
+# =========================
+# macOS
+# =========================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Config files or cache
+.ipynb_checkpoints
+*.log
+*.sqlite3
+*.pkl
+*.h5
+*.csv
+*.parquet
+*.tmp
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Data folder
+# =========================
+space-image-category/
