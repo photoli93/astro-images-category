@@ -1,3 +1,4 @@
+import numpy as np
 from pathlib import Path
 import cv2
 from torch.utils.data import Dataset
@@ -32,9 +33,12 @@ class SpaceImageDataset(Dataset):
         
         # Load image and converts BGR to RGB
         image = cv2.imread(str(img_path))
+        
+        if image is None:
+            # Skip or return a black image
+            image = np.zeros((IMG_SIZE, IMG_SIZE, 3), dtype=np.uint8)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
-        # Apply transforms
         if self.transform:
             image = self.transform(image)
         

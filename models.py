@@ -16,13 +16,13 @@ class SpaceClassifier(nn.Module):
         
         in_features = self.backbone.classifier[1].in_features
         self.backbone.classifier = nn.Sequential(
-            nn.Dropout(p=0.4, inplace=True),
+            nn.Dropout(p=0.4),
             nn.Linear(in_features, 512),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.3, inplace=True),
+            nn.ReLU(),
+            nn.Dropout(p=0.3),
             nn.Linear(512, 256),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.2, inplace=True),
+            nn.ReLU(),
+            nn.Dropout(p=0.2),
             nn.Linear(256, num_classes)
         )
     
