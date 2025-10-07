@@ -16,6 +16,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# =========================
+# Python files
+# =========================
+models/
+
 # Config files or cache
 .ipynb_checkpoints
 *.log
