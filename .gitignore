@@ -20,6 +20,7 @@ __pycache__/
 # Python files
 # =========================
 models/
+results/
 
 # Config files or cache
 .ipynb_checkpoints
