@@ -35,8 +35,8 @@ class SpaceImageDataset(Dataset):
         image = cv2.imread(str(img_path))
         
         if image is None:
-            # Skip or return a black image
-            image = np.zeros((IMG_SIZE, IMG_SIZE, 3), dtype=np.uint8)
+                print(f"Skipping unreadable image: {img_path}")
+                return self.__getitem__((idx + 1) % len(self.samples))  # move to next one
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         
         if self.transform:
