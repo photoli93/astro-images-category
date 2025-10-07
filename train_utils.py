@@ -71,7 +71,3 @@ def validate(model, dataloader, criterion, device):
     epoch_loss = running_loss / total
     epoch_acc = correct / total
     return epoch_loss, epoch_acc, all_preds, all_labels
-
-print("=" * 80)
-print("Training utilities configured")
-print("=" * 80)
