@@ -79,7 +79,7 @@ class SpaceImageDataset(Dataset):
                     self.samples.append((img_path, self.class_to_idx[cls]))
 
         print(f"Dataset created from {self.root_dir}")
-        print(f"   → {len(self.samples)} valid images")
+        print(f"   -> {len(self.samples)} valid images")
         if self.skipped:
             print(f"{len(self.skipped)} images skipped (see {self.log_path})")
 
