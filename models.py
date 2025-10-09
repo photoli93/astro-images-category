@@ -32,3 +32,11 @@ class SpaceClassifier(nn.Module):
     def unfreeze_backbone(self):
         for param in self.backbone.parameters():
             param.requires_grad = True
+
+    # Unfreeze only the last few blocks of the EfficientNet backbone
+    def unfreeze_backbone_partial(self):
+        for name, param in self.backbone.named_parameters():
+            if "features.7" in name or "classifier" in name:
+                param.requires_grad = True
+        print("Only final block + classifier unfrozen")
+

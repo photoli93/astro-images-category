@@ -99,6 +99,7 @@ train_transforms = transforms.Compose([
     # ToPILImage() because of cv2.imread() defined earlier (returned a NumPy array but need a PIL Image)
     transforms.ToPILImage(),
     transforms.Resize((IMG_SIZE, IMG_SIZE)),
+    transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
     transforms.RandomRotation(45),
     transforms.RandomHorizontalFlip(),
     transforms.RandomVerticalFlip(),
