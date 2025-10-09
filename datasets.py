@@ -100,7 +100,7 @@ train_transforms = transforms.Compose([
     transforms.ToPILImage(),
     transforms.Resize((IMG_SIZE, IMG_SIZE)),
     transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
-    transforms.RandomRotation(45),
+    transforms.RandomRotation(15),
     transforms.RandomHorizontalFlip(),
     transforms.RandomVerticalFlip(),
     transforms.ColorJitter(brightness=0.2, contrast=0.2),
@@ -108,7 +108,9 @@ train_transforms = transforms.Compose([
     # Normalize for faster training, better converging
     # Pre-trained models like ResNet, VGG or EfficientNet were trained on ImageNet and these number are
     # the channel-wise mean and std of ImageNet images
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    # Prevent memorization of specific features
+    transforms.RandomErasing(p=0.2, scale=(0.02, 0.1), ratio=(0.3, 3.3), value='random')
 ])
 
 val_test_transforms = transforms.Compose([
