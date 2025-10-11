@@ -4,6 +4,7 @@ import cv2
 from torch.utils.data import Dataset
 from torchvision import transforms
 from config import IMG_SIZE
+from torchvision.transforms import AutoAugment, AutoAugmentPolicy
 
 # # SKIP IMAGES DURING EPOCHS METHOD
 # class SpaceImageDataset(Dataset):
@@ -99,11 +100,10 @@ train_transforms = transforms.Compose([
     # ToPILImage() because of cv2.imread() defined earlier (returned a NumPy array but need a PIL Image)
     transforms.ToPILImage(),
     transforms.Resize((IMG_SIZE, IMG_SIZE)),
-    transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
-    transforms.RandomRotation(15),
-    transforms.RandomHorizontalFlip(),
-    transforms.RandomVerticalFlip(),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2),
+    transforms.RandomResizedCrop(224, scale=(0.6, 1.0)),
+    AutoAugment(AutoAugmentPolicy.IMAGENET),  # applique un ensemble d’augmentations aléatoires
+    transforms.RandomHorizontalFlip(p=0.5),
+    transforms.RandomVerticalFlip(p=0.5),
     transforms.ToTensor(),
     # Normalize for faster training, better converging
     # Pre-trained models like ResNet, VGG or EfficientNet were trained on ImageNet and these number are
