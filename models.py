@@ -16,13 +16,10 @@ class SpaceClassifier(nn.Module):
         
         in_features = self.backbone.classifier[1].in_features
         self.backbone.classifier = nn.Sequential(
-            nn.Dropout(p=0.5),
-            nn.Linear(in_features, 512),
+            nn.Dropout(0.4),
+            nn.Linear(in_features, 256),
             nn.ReLU(),
-            nn.Dropout(p=0.4),
-            nn.Linear(512, 256),
-            nn.ReLU(),
-            nn.Dropout(p=0.3),
+            nn.Dropout(0.3),
             nn.Linear(256, num_classes)
         )
     
@@ -49,7 +46,8 @@ class SpaceClassifier(nn.Module):
             elif stage == 2:
                 if any(f"features.{i}" in name for i in [6, 7]) or "classifier" in name:
                     param.requires_grad = True
+                    print(f"Partially backbone unfrozen for stage {stage}")
             elif stage == 3:
                 param.requires_grad = True
-        print(f"Backbone unfrozen for stage {stage}")
+                print(f"Entire backbone unfrozen for stage {stage}")
 
